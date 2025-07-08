@@ -24,14 +24,17 @@ def install():
 
     return auth_url
 
-def make_auth_url(client_id, redirect_uri, store_domain, scopes, mall_id):  # ✅ mall_id 인자 추가
+def make_auth_url(client_id, redirect_uri, store_domain, scopes, mall_id):
     base = f"https://{store_domain}/api/v2/oauth/authorize"
+    # mall_id를 redirect_uri에 포함
+    full_redirect_uri = f"{redirect_uri}?mall_id={mall_id}"
+    
     query = {
         "response_type": "code",
         "client_id": client_id,
-        "redirect_uri": redirect_uri,
+        "redirect_uri": full_redirect_uri,
         "scope": scopes,
-        "state": mall_id  # ✅ mall_id를 state에 담음
+        "state": mall_id
     }
     return f"{base}?{urllib.parse.urlencode(query)}"
 
