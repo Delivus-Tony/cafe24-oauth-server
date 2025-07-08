@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests, urllib.parse
 
 app = Flask(__name__)
-CORS(app)  # CORS 설정 추가
+CORS(app)  # CORS 설정
 
 # ▶️ 카페24 앱 정보
 CLIENT_ID = "dBwJWYGCFlMgnYhZIUekBA"
@@ -24,14 +24,14 @@ def install():
 
     return auth_url
 
-def make_auth_url(client_id, redirect_uri, store_domain, scopes):
+def make_auth_url(client_id, redirect_uri, store_domain, scopes, mall_id):  # ✅ mall_id 인자 추가
     base = f"https://{store_domain}/api/v2/oauth/authorize"
     query = {
         "response_type": "code",
         "client_id": client_id,
         "redirect_uri": redirect_uri,
         "scope": scopes,
-        "state": mall_id
+        "state": mall_id  # ✅ mall_id를 state에 담음
     }
     return f"{base}?{urllib.parse.urlencode(query)}"
 
