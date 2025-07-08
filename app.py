@@ -26,15 +26,13 @@ def install():
 
 def make_auth_url(client_id, redirect_uri, store_domain, scopes, mall_id):
     base = f"https://{store_domain}/api/v2/oauth/authorize"
-    # mall_id를 redirect_uri에 포함
-    full_redirect_uri = f"{redirect_uri}?mall_id={mall_id}"
     
     query = {
         "response_type": "code",
         "client_id": client_id,
-        "redirect_uri": full_redirect_uri,
+        "redirect_uri": redirect_uri,  # 쿼리스트링 붙이지 마세요!
         "scope": scopes,
-        "state": mall_id
+        "state": mall_id  # mall_id는 여기에 넣고 나중에 되돌려 받기
     }
     return f"{base}?{urllib.parse.urlencode(query)}"
 
