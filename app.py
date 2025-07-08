@@ -9,7 +9,7 @@ CORS(app)  # CORS 설정
 CLIENT_ID = "dBwJWYGCFlMgnYhZIUekBA"
 CLIENT_SECRET = "pt9fuUjdYa5Nf3lasDbLvL"
 REDIRECT_URI = "https://delivus-tony.github.io/cafe24-auth-test/callback.html"
-SCOPES = "mall.read_product mall.write_product"
+SCOPES = "mall.read_product"
 
 # 🔹 1단계: mall_id 받아 인증 URL 생성
 @app.route("/install", methods=["POST"])
