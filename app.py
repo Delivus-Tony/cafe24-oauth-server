@@ -20,7 +20,7 @@ def install():
         return "❌ mall_id 없음", 400
 
     store_domain = f"{mall_id}.cafe24api.com"
-    auth_url = make_auth_url(CLIENT_ID, REDIRECT_URI, store_domain, SCOPES)
+    auth_url = make_auth_url(CLIENT_ID, REDIRECT_URI, store_domain, SCOPES, mall_id)
 
     return auth_url
 
@@ -31,7 +31,7 @@ def make_auth_url(client_id, redirect_uri, store_domain, scopes):
         "client_id": client_id,
         "redirect_uri": redirect_uri,
         "scope": scopes,
-        "state": "secure_token_abc"
+        "state": mall_id
     }
     return f"{base}?{urllib.parse.urlencode(query)}"
 
